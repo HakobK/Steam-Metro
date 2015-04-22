@@ -12,6 +12,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using SteamSharp;
+using Newtonsoft;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -26,9 +28,21 @@ namespace SteamMetro
         {
             this.InitializeComponent();
         }
+        
+        public async void getInfo()
+        {
+            SteamClient client = new SteamClient();
+
+        }
 
         private void Title_Copy1_SelectionChanged(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            SteamClient client = new SteamClient();
 
         }
     }
