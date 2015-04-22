@@ -26,5 +26,10 @@ namespace SteamMetro
         {
             this.InitializeComponent();
         }
+
+        private void Title_Copy1_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
