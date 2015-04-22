@@ -20,6 +20,7 @@
         <TextBox HorizontalAlignment="Left" Margin="45,397,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Height="41" Width="540"/>
         <TextBlock x:Name="Title_Copy1" HorizontalAlignment="Left" Margin="45,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="263" Height="67" FontSize="44" Text="Password" SelectionChanged="Title_Copy1_SelectionChanged"/>
         <Button Content="Login&#xD;&#xA;&#xD;&#xA;" HorizontalAlignment="Left" Margin="42,499,0,0" VerticalAlignment="Top" Width="187" Height="62" FontSize="27" Click="Button_Click"/>
+        <TextBlock x:Name="nameTag" HorizontalAlignment="Left" Margin="639,316,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>
