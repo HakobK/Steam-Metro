@@ -8,7 +8,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBox HorizontalAlignment="Left" Margin="45,230,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Height="33" Width="540"/>
+        <TextBox x:Name="txtUser" HorizontalAlignment="Left" Margin="45,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="540"/>
         <TextBlock x:Name="Title" HorizontalAlignment="Left" Margin="45,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="412" Height="74" FontSize="70">
         	<Run Text="Steam Metro"/>
         	<LineBreak/>
@@ -17,10 +17,13 @@
         	<Run/>
         </TextBlock>
         <TextBlock x:Name="Title_Copy" HorizontalAlignment="Left" Margin="45,163,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="263" Height="67" FontSize="44" Text="Username"/>
-        <TextBox HorizontalAlignment="Left" Margin="45,397,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Height="41" Width="540"/>
         <TextBlock x:Name="Title_Copy1" HorizontalAlignment="Left" Margin="45,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="263" Height="67" FontSize="44" Text="Password" SelectionChanged="Title_Copy1_SelectionChanged"/>
-        <Button Content="Login&#xD;&#xA;&#xD;&#xA;" HorizontalAlignment="Left" Margin="42,499,0,0" VerticalAlignment="Top" Width="187" Height="62" FontSize="27" Click="Button_Click"/>
-        <TextBlock x:Name="nameTag" HorizontalAlignment="Left" Margin="639,316,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        <Button x:Name="txtLogin" Content="Login&#xD;&#xA;&#xD;&#xA;" HorizontalAlignment="Left" Margin="42,499,0,0" VerticalAlignment="Top" Width="187" Height="62" FontSize="27" Click="Button_Click"/>
+        <Image x:Name="imgCaptcha" HorizontalAlignment="Left" Height="68" Margin="645,215,0,0" VerticalAlignment="Top" Width="329"/>
+        <TextBox x:Name="txtCaptcha" HorizontalAlignment="Left" Margin="645,307,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="41" Width="329"/>
+        <WebView x:Name="webView" HorizontalAlignment="Left" Height="52" Margin="645,211,0,0" VerticalAlignment="Top" Width="355"/>
+        <TextBlock x:Name="inputtext" HorizontalAlignment="Left" Margin="645,386,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="45,397,0,0" VerticalAlignment="Top" Height="36" Width="540"/>
 
     </Grid>
 </Page>

@@ -13,8 +13,10 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using SteamSharp;
+using SteamSharp.Authenticators;
 using Newtonsoft;
 using Windows.UI.Popups;
+using System.Threading.Tasks;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,38 +27,90 @@ namespace SteamMetro
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        
         public MainPage()
         {
             this.InitializeComponent();
         }
         
-        public async void getInfo()
+        public async Task getInfo()
         {
             SteamClient client = new SteamClient();
-            string build = "";
-            int count = 0;
-            //List<SteamUserStats.GlobalAchievement> list = new List<SteamUserStats.GlobalAchievement>();
-            //list = await SteamUserStats.GetGlobalAchievementPercentagesForAppAsync(client,740);
-            
             //PlayerRelationshipType s = new PlayerRelationshipType();
-            //List<SteamUserInterface.Friend> ggg = SteamUserInterface.GetFriendList(client, "76561198035450677", s);
-
-            SteamNews.AppNews news =await SteamNews.GetNewsForAppAsync(client, 740, 6, 100);
+            //s = PlayerRelationshipType.All;
+            //string build = "";
+            //int count = 0;
+            string user = txtUser.Text;
+            string password = txtPassword.PlaceholderText;
             
 
-            //var s = Newtonsoft.Json.JsonConvert.DeserializeObject<List<SteamUserStats.GlobalAchievement>>(list,null);
-        
-                //MessageDialog message = new MessageDialog(d.SteamID.ToString());
-            foreach(SteamNews.NewsItem s in news.NewsItems)
+            SteamUser swag = new SteamUser();
+            UserAuthenticator.SteamGuardAnswer s = new UserAuthenticator.SteamGuardAnswer();
+            UserAuthenticator.CaptchaAnswer c = new UserAuthenticator.CaptchaAnswer();
+            
+           // List<SteamUserInterface.Friend> friendList = await SteamUserInterface.GetFriendListAsync(client, "STEAM_0:1:67749", s);
+
+            UserAuthenticator.SteamAccessRequestResult result = await Task.Run(() => UserAuthenticator.GetAccessTokenForUserAsync(user, "blacktiger1"));
+            if(result.IsCaptchaNeeded = true)
             {
-                build = build + " " + (news.AppID.ToString() + " en verdere informatie: " + s.Author.ToString() + " beschrijving: " + s.Contents.ToString());
-                count++;
+                webView.NavigateToString(result.CaptchaURL.ToString());
             }
 
-            MessageDialog message = new MessageDialog(news.AppID.ToString() + " " + count.ToString());
+            if(result.IsSteamGuardNeeded = true)
+            {
+                inputtext.Text = result.SteamGuardEmailDomain.ToString(); 
+            }
+
+
+            //List<SteamUserStats.GlobalAchievement> list = new List<SteamUserStats.GlobalAchievement>();
+            //List<SteamUserStats.GlobalAchievement> lister = await SteamUserStats.GetGlobalAchievementPercentagesForAppAsync(client, 440);
+
+            //List<SteamUserInterface.Friend> ggg = SteamUserInterface.GetFriendList(client, "76561198035450677", s);
+
+            //SteamNews.AppNews news = await SteamNews.GetNewsForAppAsync(client, 740, 6, 100);
+
+
+            //var s = Newtonsoft.Json.JsonConvert.DeserializeObject<List<SteamUserStats.GlobalAchievement>>(list, null);
+            //MessageDialog message = new MessageDialog(d.SteamID.ToString());
+
+            //foreach (SteamUserInterface.Friend j in friendList)
+            //{
+            //   build = build + " " + j.SteamID.ToString() + " friend since " + j.FriendSinceDateTime.ToString() + "\n";
+            //   count++;
+            //}
+
+            MessageDialog message = new MessageDialog(result.CaptchaURL.ToString() + " en dit ook");
             message.ShowAsync();
             
         }
+
+        //public async void getInfo()
+        //{
+        //    SteamClient client = new SteamClient();
+        //    string build = "";
+        //    int count = 0;
+        //    List<SteamUserStats.GlobalAchievement> list = new List<SteamUserStats.GlobalAchievement>();
+        //    List<SteamUserStats.GlobalAchievement> lister = await SteamUserStats.GetGlobalAchievementPercentagesForAppAsync(client, 440);
+
+        //    PlayerRelationshipType s = new PlayerRelationshipType();
+        //    List<SteamUserInterface.Friend> ggg = SteamUserInterface.GetFriendList(client, "76561198035450677", s);
+
+        //    SteamNews.AppNews news = await SteamNews.GetNewsForAppAsync(client, 740, 6, 100);
+
+
+        //    var s = Newtonsoft.Json.JsonConvert.DeserializeObject<List<SteamUserStats.GlobalAchievement>>(list, null);
+        //    MessageDialog message = new MessageDialog(d.SteamID.ToString());
+
+        //    foreach (SteamUserStats.GlobalAchievement s in lister)
+        //    {
+        //        build = build + " " + s.APIName.ToString() + " en ook nog: " + s.Percent.ToString() + "\n";
+        //        count++;
+        //    }
+
+        //    MessageDialog message = new MessageDialog(build);
+        //    message.ShowAsync();
+
+        //}
 
         private void Title_Copy1_SelectionChanged(object sender, RoutedEventArgs e)
         {
